@@ -27,13 +27,13 @@ def search(request):
 
 
 
-def get_category_count():
-    queryset = Post.objects.values('categories__title').annotate(Count('categories'))
-    return queryset
+# def get_category_count():
+#     queryset = Post.objects.values('categories__title').annotate(Count('categories'))
+#     return queryset
 
 def index(request):
     featured = Post.objects.filter(featured = True)
-    latest = Post.objects.order_by('-timestamp')[0:3]
+    # latest = Post.objects.order_by('-timestamp')[0:3]
 
     if request.method == 'POST':
         email = request.POST["email"]
@@ -42,7 +42,7 @@ def index(request):
         new_signup.save()
     context={
         'object_list' : featured,
-        'latest' : latest, 
+        # 'latest' : latest, 
         }    
     return render(request, 'index.html', context)
 
